@@ -24,7 +24,7 @@ class Tabelog:
         self.ward = p_ward
         self.review_cnt = 0
         self.review = ''
-        self.columns = ['store_id', 'store_name', 'score', 'ward', 'review_cnt', 'review', 'score2']
+        self.columns = ['store_id', 'store_name', 'score', 'ward', 'review_cnt', 'review']
         self.df = pd.DataFrame(columns=self.columns)
         self.__regexcomp = re.compile(r'\n|\s') # \nは改行、\sは空白
 
@@ -213,21 +213,10 @@ class Tabelog:
         score2 = soup.find_all('p', class_=re.compile(r'^c\-rating c\-rating\-\-xl rvw\-item__ratings\-total'))
         #score2 = soup.find_all('ul', class_='rvw-item__ratings') # 全体スコアが含まれているタグの中身をすべて取得
         
-        print('score2')
-        print(score2)
-        print('score2[0]')
-        print(score2[0])
-        print('score2[0].b')
-        print(score2[0].b)
-        print('score2[0].b.text')
-        print(score2[0].b.text)
-        print('score2[0].b.text.strip()')
-        print(score2[0].b.text.strip())
         if len(score2) == 0:
             score2x = ''
         else:
             score2x = score2[0].b.text.strip() # strip()は改行コードを除外する関数
-        print('score2x')
         print('score2x', score2x)
 
         # データフレームの生成
